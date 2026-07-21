@@ -1,0 +1,13 @@
+*.c
+*.cc
+*.class
+*.h
+*.hh
+!/c++/glr/ast.hh
+*.java
+*.ll
+/c/bistromathic/bistromathic
+/c/calc/calc
+/c/glr/c++-types
+/c/lexcalc/lexcalc
+/c/pushcalc/calc

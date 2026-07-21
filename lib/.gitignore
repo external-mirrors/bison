@@ -1,9 +1,3 @@
-/*.a
-/*.bak
-/*.o
-/*~
-/.deps
-/.dirstamp
 /_Noreturn.h
 /access.c
 /alloca.h
@@ -27,8 +21,6 @@
 /basename.c
 /binary-io.c
 /binary-io.h
-/bitrotate.c
-/bitrotate.h
 /bitset.c
 /bitset.h
 /bitset/
@@ -39,7 +31,6 @@
 /c-ctype.h
 /c-strcase.h
 /c-strcasecmp.c
-/c-strcaseeq.h
 /c-strncasecmp.c
 /c-strtod.c
 /c-strtod.h
@@ -226,10 +217,6 @@
 /iconv_open-aix.h
 /iconv_open-hpux.gperf
 /iconv_open-hpux.h
-/iconv_open-irix.gperf
-/iconv_open-irix.h
-/iconv_open-osf.gperf
-/iconv_open-osf.h
 /iconv_open-solaris.gperf
 /iconv_open-solaris.h
 /iconv_open-zos.gperf
@@ -243,6 +230,7 @@
 /intprops.h
 /inttypes.h
 /inttypes.in.h
+/isinf.c
 /isnan.c
 /isnand-nolibm.h
 /isnand.c
@@ -250,6 +238,8 @@
 /isnanf.c
 /isnanl-nolibm.h
 /isnanl.c
+/issymlink.c
+/issymlink.h
 /iswblank.c
 /iswdigit.c
 /iswpunct.c
@@ -279,8 +269,6 @@
 /mbchar.h
 /mbfile.c
 /mbfile.h
-/mbiterf.c
-/mbiterf.h
 /mbrtoc32.c
 /mbrtowc-impl-utf8.h
 /mbrtowc-impl.h
@@ -292,8 +280,11 @@
 /mbszero.c
 /mbtowc-lock.c
 /mbtowc-lock.h
+/mcel.c
+/mcel.h
 /memchr.c
 /memchr.valgrind
+/memeq.c
 /mempcpy.c
 /memrchr.c
 /minmax.h
@@ -337,6 +328,7 @@
 /pthread-once.c
 /pthread.h
 /pthread.in.h
+/pthread_sigmask.c
 /quote.h
 /quotearg.c
 /quotearg.h
@@ -370,6 +362,8 @@
 /sig-handler.c
 /sig-handler.h
 /sigaction.c
+/sigdelay.c
+/sigdelay.h
 /signal.h
 /signal.in.h
 /signbitd.c
@@ -404,14 +398,21 @@
 /stat-w32.c
 /stat-w32.h
 /stat.c
+/stdbit.h
+/stdbit.in.h
 /stdbool.h
+/stdc_rotate_left.c
+/stdc_rotate_right.c
 /stdckdint.h
 /stdckdint.in.h
+/stdcountof.h
+/stdcountof.in.h
 /stddef.h
 /stddef.in.h
 /stdint.h
 /stdint.in.h
 /stdio--.h
+/stdio-consolesafe.c
 /stdio-impl.h
 /stdio-read.c
 /stdio-safer.h
@@ -426,7 +427,8 @@
 /strchrnul.c
 /strchrnul.valgrind
 /strdup.c
-/streq.h
+/streq-opt.h
+/streq.c
 /strerror-override.c
 /strerror-override.h
 /strerror.c
@@ -438,6 +440,7 @@
 /stripslash.c
 /strndup.c
 /strnlen.c
+/strnul.c
 /strtod.c
 /strverscmp.c
 /sys/
@@ -452,6 +455,10 @@
 /termios.in.h
 /textstyle.h
 /textstyle.in.h
+/thread-creators.gperf
+/thread-creators.h
+/thread-optim-proto.c
+/thread-optim.c
 /thread-optim.h
 /time.h
 /time.in.h
@@ -520,6 +527,8 @@
 /windows-rwlock.h
 /windows-spawn.c
 /windows-spawn.h
+/windows-spin.c
+/windows-spin.h
 /windows-tls.c
 /windows-tls.h
 /xalloc-die.c

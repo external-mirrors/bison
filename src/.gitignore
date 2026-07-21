@@ -1,9 +1,4 @@
 /*.flc
-/*.log
-/*.o
-/*.output
-/.deps
-/.dirstamp
 /bison
 /bison.exe
 /scan-code.c
