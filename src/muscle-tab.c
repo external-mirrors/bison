@@ -193,7 +193,7 @@ muscle_grow (const char *key, const char *val,
     obstack_sgrow (&muscle_obstack, terminator);
 
   {
-    char const *new_val = obstack_finish0 (&muscle_obstack);
+    char *new_val = obstack_finish0 (&muscle_obstack);
     entry->value = entry->storage = xstrdup (new_val);
     obstack_free (&muscle_obstack, new_val);
   }
@@ -211,7 +211,7 @@ muscle_syncline_grow (char const *key, location loc)
   obstack_quote (&muscle_obstack,
                  quotearg_style (c_quoting_style, map_file_name (loc.start.file)));
   obstack_sgrow (&muscle_obstack, ")dnl\n[");
-  char const *extension = obstack_finish0 (&muscle_obstack);
+  char *extension = obstack_finish0 (&muscle_obstack);
   muscle_grow (key, extension, "", "");
   obstack_free (&muscle_obstack, extension);
 }
@@ -239,7 +239,7 @@ muscle_pair_list_grow (const char *muscle,
   obstack_sgrow (&muscle_obstack, ", ");
   obstack_quote (&muscle_obstack, a2);
   obstack_sgrow (&muscle_obstack, "]");
-  char const *pair = obstack_finish0 (&muscle_obstack);
+  char *pair = obstack_finish0 (&muscle_obstack);
   muscle_grow (muscle, pair, ",\n", "");
   obstack_free (&muscle_obstack, pair);
 }
@@ -275,7 +275,7 @@ muscle_boundary_grow (char const *key, boundary bound)
   obstack_sgrow  (&muscle_obstack, "[[");
   obstack_escape (&muscle_obstack, bound.file);
   obstack_printf (&muscle_obstack, ":%d.%d@@%d]]", bound.line, bound.column, bound.byte);
-  char const *extension = obstack_finish0 (&muscle_obstack);
+  char *extension = obstack_finish0 (&muscle_obstack);
   muscle_grow (key, extension, "", "");
   obstack_free (&muscle_obstack, extension);
 }
@@ -326,7 +326,7 @@ string_decode (char const *key)
           break;
       }
   } while (*value++);
-  char const *value_decoded = obstack_finish (&muscle_obstack);
+  char *value_decoded = obstack_finish (&muscle_obstack);
   char *res = xstrdup (value_decoded);
   obstack_free (&muscle_obstack, value_decoded);
   return res;
@@ -407,16 +407,15 @@ define_directive (char const *assignment,
                   muscle_kind kind,
                   char const *value)
 {
-  char *eq = strchr (assignment, '=');
   char const *fmt
-    = eq || !value || !*value ? "%%define %s"
+    = strchr (assignment, '=') || !value || !*value ? "%%define %s"
     : kind == muscle_code     ? "%%define %s {%s}"
     : kind == muscle_string   ? "%%define %s \"%s\""
     :                           "%%define %s %s";
   char *res = xmalloc (strlen (fmt) + strlen (assignment)
                        + (value ? strlen (value) : 0));
   sprintf (res, fmt, assignment, value);
-  eq = strchr (res, '=');
+  char *eq = strchr (res, '=');
   if (eq)
     *eq = eq[1] ? ' ' : '\0';
   return res;
