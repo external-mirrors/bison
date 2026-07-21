@@ -307,6 +307,10 @@ static YYLTYPE yyloc_default][]b4_yyloc_default;])[
 # include <setjmp.h>
 # define YYJMP_BUF jmp_buf
 # define YYSETJMP(Env) setjmp (Env)
+/* Pacify GCC <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=21161>.  */
+#if defined __GNUC__ && 4 < __GNUC__ + (6 <= __GNUC_MINOR__)
+# pragma GCC diagnostic ignored "-Wclobbered"
+#endif
 /* Pacify Clang and ICC.  */
 # define YYLONGJMP(Env, Val)                    \
  do {                                           \
