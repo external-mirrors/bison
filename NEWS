@@ -8,6 +8,9 @@ GNU Bison NEWS
 
   The C++ skeletons now expose copy and move operators for symbols.
 
+  The default (C) skeleton now supports user-defined semantic and location
+  types that are trivially copyable in C++.
+
   Fixed portability issues of the test suite on Solaris.
 
   Fixed spurious warnings about input containing `m4_` or `b4_`.

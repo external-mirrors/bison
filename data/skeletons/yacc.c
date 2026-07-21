@@ -581,10 +581,27 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 # define YYCOPY_NEEDED 1]])[
 #endif /* ]b4_lac_if([[1]], [b4_parse_error_case([simple], [[!defined yyoverflow]], [[1]])])[ */
 
-#if (! defined yyoverflow \
-     && (! defined __cplusplus \
-         || (]b4_locations_if([[defined ]b4_api_PREFIX[LTYPE_IS_TRIVIAL && ]b4_api_PREFIX[LTYPE_IS_TRIVIAL \
-             && ]])[defined ]b4_api_PREFIX[STYPE_IS_TRIVIAL && ]b4_api_PREFIX[STYPE_IS_TRIVIAL)))
+#ifndef yyoverflow
+/* In C++, ]b4_api_PREFIX[STYPE must be trivially copyable.
+   If ]b4_api_PREFIX[STYPE_IS_TRIVIAL, this is already known.
+   Otherwise check this if easy, as in newer C++ compilers.]b4_locations_if([[
+   Likewise for ]b4_api_PREFIX[LTYPE.]])[  */
+# if (! (]b4_locations_if([[defined ]b4_api_PREFIX[LTYPE_IS_TRIVIAL && ]b4_api_PREFIX[LTYPE_IS_TRIVIAL \
+         && ]])[defined ]b4_api_PREFIX[STYPE_IS_TRIVIAL && ]b4_api_PREFIX[STYPE_IS_TRIVIAL) \
+      && defined __cplusplus && 201103 <= __cplusplus \
+      && !(defined _GLIBCXX_RELEASE \
+           ? _GLIBCXX_RELEASE < 5 \
+           : defined __GLIBCXX__) \
+      && defined __has_include)
+#  if __has_include (<type_traits>)
+#   include <type_traits>
+]b4_locations_if(
+[[static_assert (std::is_trivially_copyable<]b4_api_PREFIX[LTYPE>::value,
+               "Bison error: api.location.type is not trivially copyable");
+]])[static_assert (std::is_trivially_copyable<]b4_api_PREFIX[STYPE>::value,
+               "Bison error: api.value.type is not trivially copyable");
+#  endif
+# endif
 
 /* A type that is properly aligned for any stack member.  */
 union yyalloc
